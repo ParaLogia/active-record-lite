@@ -57,7 +57,7 @@ describe 'Associatable' do
   describe '#has_one_through' do
     before(:all) do
       class Cat
-        has_one_through :home, :human, :house
+        has_one_through :house, :human
 
         self.finalize!
       end
@@ -66,11 +66,11 @@ describe 'Associatable' do
     let(:cat) { Cat.find(1) }
 
     it 'adds getter method' do
-      expect(cat).to respond_to(:home)
+      expect(cat).to respond_to(:house)
     end
 
     it 'fetches associated `home` for a `Cat`' do
-      house = cat.home
+      house = cat.house
 
       expect(house).to be_instance_of(House)
       expect(house.address).to eq('26th and Guerrero')
